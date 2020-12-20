@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+// REDUCER _________________________------------
+const myCities={
+  cities:[],
+};
+
+
+export const reducer=(state,action) => {
+
+  
+}
+
+// ACTIONS -----------------------
+// por como esta diseñado el test, el id de la ciudad deberian colocarla al momento de agregarlo en el reducer
+ export const addCity= ()=>{
+  
+ }
+
+ export const removeCity=()=>{
+ }
+
+
+ // COMPONENTE _--------------------
+ // La idea es hacer una app donde uds mismos puedan ingresar una ciudad y renderizarlas en esta misma
+ // hoja. Deberian hacer el form y renderizar lo que tendrian en el "estado local de redux"
+ // la manera en la que pueden unir los componentes es al momento de agregar una ciudad es llamarlo de la siguiente
+ // manera "onClick={reducer(EstadoActual,Accion(payload))}"
+ // Recuerden que la idea es practicar y tener conceptos claros, con que entiendan los tests y sientan que entendieron
+ // es suficiente.
+export const App=() => {
+
+  return;
+
 }
 
 export default App;
