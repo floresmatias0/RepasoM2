@@ -7,18 +7,36 @@ const myCities={
 };
 
 
-export const reducer=(state,action) => {
-
+export const reducer=(state = myCities ,action) => {
+  switch(action.type){
+    case "AddCity": 
+    return [...state.cities.concat(action.payload)]
+    ;
+    default:
+      return state;
+    
+  }
   
 }
 
 // ACTIONS -----------------------
 // por como esta diseñado el test, el id de la ciudad deberian colocarla al momento de agregarlo en el reducer
- export const addCity= ()=>{
-  
+ export const addCity= (payload)=>{
+   let suma = 1;
+  return {
+    type:"AddCity", payload:{
+        city: payload.city,
+        location: payload.location,
+        temperatura: payload.temperatura,
+        id: suma++
+    }
+  }
  }
 
- export const removeCity=()=>{
+ export const removeCity=(payload)=>{
+   return {
+     type:"RemoveCity", payload
+   }
  }
 
 
@@ -31,8 +49,14 @@ export const reducer=(state,action) => {
  // es suficiente.
 export const App=() => {
 
-  return;
-
+  return(
+  <form>
+    <input name="city"></input>
+    <textarea name="location"></textarea>
+    <input name="temperatura"></input>
+    <button type="submit">cerrar</button>
+  </form>
+  )
 }
 
 export default App;
