@@ -8,10 +8,24 @@ const myCities={
 
 
 export const reducer=(state = myCities ,action) => {
+  
   switch(action.type){
     case "AddCity": 
-    return [...state.cities.concat(action.payload)]
+    return {
+      ...state,
+      cities: state.cities.concat(action.payload={
+        city: action.payload.city,
+        location: action.payload.location,
+        temperatura: action.payload.temperatura,
+        id: state.cities.length+1}),
+      
+      }
     ;
+    case "RemoveCity":
+    return {
+      ...state,
+      cities: state.cities.filter(borrado => borrado.id !== action.payload)
+    };
     default:
       return state;
     
@@ -22,14 +36,8 @@ export const reducer=(state = myCities ,action) => {
 // ACTIONS -----------------------
 // por como esta diseñado el test, el id de la ciudad deberian colocarla al momento de agregarlo en el reducer
  export const addCity= (payload)=>{
-   let suma = 1;
   return {
-    type:"AddCity", payload:{
-        city: payload.city,
-        location: payload.location,
-        temperatura: payload.temperatura,
-        id: suma++
-    }
+    type:"AddCity", payload
   }
  }
 
@@ -47,13 +55,33 @@ export const reducer=(state = myCities ,action) => {
  // manera "onClick={reducer(EstadoActual,Accion(payload))}"
  // Recuerden que la idea es practicar y tener conceptos claros, con que entiendan los tests y sientan que entendieron
  // es suficiente.
-export const App=() => {
+export const App = () => {
+  const [input,setInput] = React.useState({
+    city:"",
+    location:"",
+    temperatura:""
+  })
+  console.log(input)
+
+  const handleChange = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]:e.target.value
+    })  
+  }
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     props.addTodo(input)   
+// } 
+
+  let {city,location,temperatura} = input;
 
   return(
   <form>
-    <input name="city"></input>
-    <textarea name="location"></textarea>
-    <input name="temperatura"></input>
+    <input name="city" onChange={handleChange} value={city}></input>
+    <textarea name="location" onChange={handleChange} value={location}></textarea>
+    <input name="temperatura" onChange={handleChange} value={temperatura}></input>
     <button type="submit">cerrar</button>
   </form>
   )
